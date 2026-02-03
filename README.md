@@ -8,6 +8,8 @@ You're evaluating a candidate and want to do a backchannel reference. But cross-
 
 Backchannel automates this. Import your connections, paste a candidate's LinkedIn URL, and see which colleagues overlapped with them at the same companies.
 
+The intended use: filter for your current coworkers to find out if any of them worked with the candidate before. That's your shortlist for a warm, trusted reference.
+
 ## Features
 
 - Import your LinkedIn connections (CSV export)
@@ -124,6 +126,10 @@ bun run dev:dual     # Start both with HMR
 bun run build        # Build client for production
 bun test server/src  # Run tests
 ```
+
+## Background
+
+This project was inspired by a similar feature in Google's internal ATS (Applicant Tracking System) circa 2006, which surfaced coworker overlaps with candidates automatically.
 
 ## License
 
