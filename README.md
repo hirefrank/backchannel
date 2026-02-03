@@ -1,29 +1,29 @@
 # Backchannel
 
-A local-first tool that helps you find professional connections between job candidates and your existing network. Discover who you already know that has worked with a candidate—before you reach out for a reference.
+Find out who in your network has worked with a job candidate before you reach out for a reference.
 
-## The Problem
+## The problem
 
-You're evaluating a candidate. You want to do a backchannel reference—talk to someone who's actually worked with them. But manually cross-referencing their work history against your 500+ LinkedIn connections? That's hours of clicking through profiles.
+You're evaluating a candidate and want to do a backchannel reference. But cross-referencing their work history against your 500+ LinkedIn connections by hand? That takes hours.
 
-Backchannel automates this. Import your connections, and when you're evaluating a candidate, instantly see which of your colleagues overlapped with them at the same companies.
+Backchannel automates this. Import your connections, paste a candidate's LinkedIn URL, and see which colleagues overlapped with them at the same companies.
 
 ## Features
 
-- **Import LinkedIn Connections** - Upload your connections export (CSV)
-- **Profile Enrichment** - Fetch work history for your network
-- **Candidate Analysis** - Enter a candidate's LinkedIn URL
-- **Overlap Detection** - Find colleagues at the same companies during the same time
-- **One-Click Outreach** - Draft emails to colleagues for references
+- Import your LinkedIn connections (CSV export)
+- Fetch work history for your network
+- Paste a candidate's LinkedIn URL to analyze
+- See colleagues who worked at the same companies at the same time
+- Draft outreach emails
 
-## Quick Start
+## Quick start
 
 ```bash
 # Install Bun if you haven't: https://bun.sh
 curl -fsSL https://bun.sh/install | bash
 
 # Clone and setup
-git clone https://github.com/yourusername/backchannel.git
+git clone https://github.com/hirefrank/backchannel.git
 cd backchannel
 bun install
 bun run db:migrate
@@ -34,34 +34,34 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ### Configuration
 
-1. **Settings** (gear icon) → Enter your current company name
-2. **LinkedIn Session Cookie** (see below)
-3. **Gemini API Key**: Get one free at [Google AI Studio](https://aistudio.google.com/apikey)
+1. Click the Settings gear icon, enter your current company name
+2. Add your LinkedIn session cookie (see below)
+3. Add a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
 
-#### Getting Your LinkedIn Session Cookie
+### Getting your LinkedIn session cookie
 
 1. Open [linkedin.com](https://www.linkedin.com) in Chrome and log in
 2. Open DevTools: `F12` (or `Cmd+Option+I` on Mac)
-3. Go to **Application** tab → **Cookies** → **linkedin.com**
+3. Go to Application tab, then Cookies, then linkedin.com
 4. Find the cookie named `li_at`
-5. Double-click the **Value** column and copy the entire string
+5. Double-click the Value column and copy the entire string
 6. Paste it into Backchannel's Settings
 
-The cookie looks something like `AQEDAT...` (a long alphanumeric string). This is your authenticated session—treat it like a password.
+The cookie looks like `AQEDAT...` (a long alphanumeric string). Treat it like a password.
 
 ### Usage
 
 1. Export connections from LinkedIn (Settings → Data Privacy → Get a copy → Connections)
-2. Import the CSV in the **Network** tab
-3. Click **Enrich All** to fetch work histories
-4. Go to **Check** tab, paste a candidate's LinkedIn URL
+2. Import the CSV in the Network tab
+3. Click "Enrich All" to fetch work histories
+4. Go to the Check tab, paste a candidate's LinkedIn URL
 5. See who in your network worked with them
 
-## Tech Stack
+## Tech stack
 
 [Bun](https://bun.sh) + [Hono](https://hono.dev) + [Vite](https://vitejs.dev) + [React](https://react.dev) + SQLite + [Puppeteer](https://pptr.dev) + [Gemini AI](https://ai.google.dev)
 
-## How It Works
+## How it works
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -82,33 +82,17 @@ The cookie looks something like `AQEDAT...` (a long alphanumeric string). This i
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## On "Scraping" vs Personal Automation
+## On "scraping"
 
-This tool doesn't scrape LinkedIn in the traditional sense. Here's the distinction:
+This isn't scraping in the usual sense.
 
-**Traditional scraping:**
-- Uses fake accounts or no authentication
-- Harvests data from profiles you don't have access to
-- Operates at scale for commercial purposes
-- Stores and redistributes data
+Traditional scraping uses fake accounts to harvest data from profiles you can't access, at scale, for commercial use. Backchannel uses your own authenticated session to view profiles you already have access to, stores everything locally, and automates what you'd otherwise do by clicking around manually.
 
-**What Backchannel does:**
-- Uses *your own* authenticated session
-- Only accesses profiles *you* can already view manually
-- Runs locally on *your* machine
-- Data never leaves your computer
-- Automates what you could do by hand (just faster)
+Think of it like a password manager auto-filling forms, or an email client fetching messages. You're not bypassing access controls. You're just automating your own workflow.
 
-Think of it like using a password manager that auto-fills forms, or an email client that fetches your messages. You're not bypassing any access controls—you're automating your own manual workflow.
+That said, LinkedIn's Terms of Service are broad enough that they could object to any automation. Keep rate limits reasonable (default is 2 seconds between requests), use it for personal reference checks, don't redistribute data, and understand you're on your own here.
 
-That said, LinkedIn's Terms of Service are broad and could be interpreted to prohibit any automation. We recommend:
-
-- Keep rate limits reasonable (default 2 seconds between requests)
-- Use for personal reference checks, not bulk data collection
-- Don't redistribute any data
-- Understand that you use this at your own discretion
-
-## Project Structure
+## Project structure
 
 ```
 backchannel/
@@ -124,17 +108,13 @@ backchannel/
 └── network.db              # Local database (gitignored)
 ```
 
-## Security Notes
+## Security
 
-Data stays local with one exception:
+Your session cookie and API key are stored in local SQLite. The database file is gitignored and never committed.
 
-- **Session cookie** and **API key** stored in local SQLite
-- **Database file** is gitignored—never committed
-- **Gemini API** is used for inference—profile text is sent to Google's API for parsing into structured data
+One thing to know: profile text gets sent to Google's Gemini API for parsing into structured data. Everything else stays on your machine.
 
-Recommendations:
-- Run only on machines you control
-- If you suspect your session is compromised, revoke it in LinkedIn settings
+If you think your session cookie is compromised, revoke it in LinkedIn's settings.
 
 ## Development
 
