@@ -10,6 +10,8 @@ Backchannel automates this. Import your connections, paste a candidate's LinkedI
 
 The intended use: filter for your current coworkers to find out if any of them worked with the candidate before. That's your shortlist for a warm, trusted reference.
 
+![Backchannel screenshot](screenshot.png)
+
 ## Features
 
 - Import your LinkedIn connections (CSV export)
@@ -36,7 +38,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ### Configuration
 
-1. Click the Settings gear icon, enter your current company name
+1. Click the Settings gear icon and change the company name to your current employer (defaults to Shopify)
 2. Add your LinkedIn session cookie (see below)
 3. Add a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
 
