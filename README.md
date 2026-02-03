@@ -126,11 +126,11 @@ backchannel/
 
 ## Security Notes
 
-All data stays local:
+Data stays local with one exception:
 
 - **Session cookie** and **API key** stored in local SQLite
 - **Database file** is gitignored—never committed
-- **No external servers**—everything runs on localhost
+- **Gemini API** is used for inference—profile text is sent to Google's API for parsing into structured data
 
 Recommendations:
 - Run only on machines you control
