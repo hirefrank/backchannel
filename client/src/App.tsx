@@ -6,6 +6,7 @@ import {
   Clock,
   Zap,
   Network,
+  Github,
 } from "lucide-react";
 import { queryClient } from "./lib/queryClient";
 import { SettingsModal } from "./components/SettingsModal";
@@ -80,12 +81,22 @@ function MainApp() {
             </div>
           </div>
 
-          <button
-            onClick={() => setShowSettings(true)}
-            className="p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-elevated)] hover:border-[var(--color-text-muted)] transition-all"
-          >
-            <Settings className="w-4 h-4 text-[var(--color-text-secondary)]" />
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://github.com/hirefrank/backchannel"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-elevated)] hover:border-[var(--color-text-muted)] transition-all"
+            >
+              <Github className="w-4 h-4 text-[var(--color-text-secondary)]" />
+            </a>
+            <button
+              onClick={() => setShowSettings(true)}
+              className="p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-elevated)] hover:border-[var(--color-text-muted)] transition-all"
+            >
+              <Settings className="w-4 h-4 text-[var(--color-text-secondary)]" />
+            </button>
+          </div>
         </div>
       </header>
 
