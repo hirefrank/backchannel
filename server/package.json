@@ -2,10 +2,6 @@
   "name": "network-intel-server",
   "version": "1.0.0",
   "type": "module",
-  "packageManager": "pnpm@10.0.0",
-  "pnpm": {
-    "onlyBuiltDependencies": ["puppeteer"]
-  },
   "dependencies": {
     "@ai-sdk/google": "^1.2.0",
     "ai": "^4.3.0",
